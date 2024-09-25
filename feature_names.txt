@@ -1,0 +1,159 @@
+AGE_AT_VISIT
+SEX
+RAASIAN
+RABLACK
+RAWHITE
+GDS
+HY
+MCATOT
+DXTREMOR
+DXRIGID
+DXBRADY
+DXPOSINS
+DXOTHSX
+EDUCYRS
+AGE_AT_SX
+AGE_AT_PDDX
+SXDR
+PDDDR
+HANDED_LEFT
+HANDED_RIGHT
+HANDED_BOTH
+DOMSIDE_LEFT
+DOMSIDE_RIGHT
+DOMSIDE_BOTH
+Left Fusiform
+Left Lingual
+Left Lingual 2
+Left Occipital Inf
+Left Calcarine
+Left Calcarine 2
+Left Occipital Mid
+Left Occipital Mid 2
+Left Cuneus
+Left Temporal Sup
+Left Insula
+Left Temporal Sup 2
+Left Postcentral
+Left Precentral
+Left Paracentralobule
+Left Temporal Inf
+Left SupraMarginal
+Left Parietal Sup
+Left Postcentral 2
+Left Precuneus
+Left Parietal Sup 2
+Left Frontal Inf Oper
+Left Frontal Mid
+Left SupraMarginal 2
+Left Insula 2
+Left Insula 3
+Left Frontal Mid 2
+Left Cingulum Mid
+Left Cingulum Mid 2
+Left Supp Motor Area
+Left Frontal Sup Orb
+Left Temporal Inf 2
+Left Temporal Inf 3
+Left Parietal Inf
+Left Frontal Inf Tri
+Left Precuneus 2
+Left Cingulum Post 1
+Left Temporal Mid
+Left Temporal Mid 2
+Left Temporal Mid 3
+Left Angular
+Left Insula 4
+Left Frontal Inf Tri 2
+Left Cingulum Ant
+Left Frontal Sup Orb 2
+Left Frontal Sup Medial
+Left Frontal Mid 3
+Left Frontal Mid 4
+Left Precuneus 3
+Left Cingulum Post
+Right Fusiform
+Right Fusiform 2
+Right Temporal Inf
+Right Occipital Inf
+Right Calcarine
+Right Calcarine 2
+Right Occipital Mid
+Right Cuneus
+Right Temporal Sup
+Right Insula
+Right Rolandic Oper
+Right Postcentral
+Right Precentral
+Right Precentral 2
+Right Postcentral 2
+Right Paracentral Lobule
+Right Temporal Mid
+Right Postcentral 3
+Right Parietal Inf
+Right Parietal Sup
+Right Parietal Sup 2
+Right Frontal Inf Oper
+Right Frontal Sup
+Right Temporal Sup 2
+Right SupraMarginal
+Right Insula 2
+Right Cingulum Mid
+Right Supp Motor Area
+Right Frontal Sup Orb
+Right Temporal Inf 2
+Right SupraMarginal 2
+Right Angular
+Right Frontal Sup Orb 2
+Right Frontal Inf Tri
+Right Frontal Mid
+Right Frontal Mid 2
+Right Cingulum Mid 2
+Right Cingulum Mid 3
+Right Precuneus
+Right Angular 2
+Right Temporal Inf 3
+Right Temporal Pole Sup
+Right Temporal Mid 2
+Right Frontal Inf Orb
+Right Frontal Inf Tri 2
+Right Frontal Sup Medial
+Right Frontal Sup Medial 2
+Right Frontal Sup 2
+Right Precuneus 2
+Right Cingulum Post
+Vermis 7
+Right Cerebellum 4 5
+Right Cerebellum 8
+Right Cerebellum 6 1
+Right Cerebellum 6 2
+Right Cerebellum Crus1
+Right Cerebellum Crus2
+Vermis 7 2
+Left Cerebellum 4 5
+Left Cerebellum 8
+Left Cerebellum 8 1
+Left Cerebellum
+Left Cerebellum Crus2
+Left Cerebellum Crus2 2
+Left Putamen
+Right Putamen
+Right Putamen 1
+Right Putamen 2
+Right Caudate
+Right Putamen 3
+Right Caudate 2
+Left Putamen 2
+Left Putamen 1
+Left Putamen 3
+Left Putamen 4
+Left Caudate
+Left Caudate 2
+Right Hippocampus
+Right Hippocampus 2
+Left Hippocampus
+Left Hippocampus 2
+Right Hippocampus 3
+Left Amygdala
+Right Thalamus
+Left Thalamus
