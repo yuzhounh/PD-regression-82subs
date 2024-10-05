@@ -1,4 +1,4 @@
-# PPMI_regression_82subs
+# PD regression with 82 subjects
 
 This project contains code and data for regression analysis on Parkinson's disease (PD) using data from 82 subjects.
 
@@ -55,4 +55,4 @@ This project is licensed under the GNU General Public License v3.0 (GPL-3.0). Se
 
 Jing Wang - wangjing@xynu.edu.cn
 
-Project Link: [https://github.com/yuzhounh/PD_regression_82subs](https://github.com/yuzhounh/PD_regression_82subs)
+Project Link: [https://github.com/yuzhounh/PD-regression-82subs](https://github.com/yuzhounh/PD-regression-82subs)
