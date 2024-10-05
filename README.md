@@ -43,6 +43,10 @@ The analysis generates several result figures:
 
 These figures provide visual representations of the regression analysis results and can be found in the `figures/` directory.
 
+## Acknowledgements
+
+This project uses the `tight_subplot` function by Pekka Kumpulainen, available on [MATLAB File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/27991-tight_subplot-nh-nw-gap-marg_h-marg_w).
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for details.
