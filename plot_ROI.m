@@ -51,6 +51,9 @@ masked_mni(eroded_mask == 0) = 0;
 scale = 0.5;
 fig = figure('Position', [100, 100, 14*scale*100, 12*scale*100]);
 
+% Get weight range for consistent colormap scaling
+weight_range = [min(weights(top_3_indices)), max(weights(top_3_indices))];
+
 % Define the number of rows and columns
 Nh = 3; % Number of rows
 Nw = 3; % Number of columns
@@ -112,12 +115,13 @@ for row = 1:3
         
         % Create new axes object and overlay it on the current axes
         ax2 = axes('Position', get(ax1, 'Position'));
-        h2 = imagesc(ax2, slice);  % Plot overlay image on the new axes
+        h2 = imagesc(ax2, slice);
         set(h2, 'AlphaData', slice ~= 0);
         colormap(ax2, 'parula');
+        clim(ax2, weight_range);  % 设置统一的颜色范围
         axis(ax2, 'off');
         axis(ax2, 'equal');
-        set(ax2, 'Color', 'none');  % transparent
+        set(ax2, 'Color', 'none');
         
         % Link the position and range of both axes
         linkaxes([ax1, ax2]);
@@ -135,8 +139,8 @@ for row = 1:3
 end
 
 % Add colorbar to the right side of the figure
-cb = colorbar('Position', [0.88,0.055,0.025,0.88]);
-ylabel(cb, 'Weight', 'FontSize', 14);
+cb = colorbar('Position', [0.88,0.228,0.025,0.544]);
+ylabel(cb, 'Weight', 'FontSize', 11);
 
 
 function text_with_outline(ax, x, y, string, fontSize)
