@@ -1,58 +1,113 @@
-# PD regression with 82 subjects
+# PD-MCI-Classification: Machine Learning to Predict Mild Cognitive Impairment in Parkinson's Disease
 
-This project contains code and data for regression analysis on Parkinson's disease (PD) using data from 82 subjects.
+[![Paper](https://img.shields.io/badge/Paper-Frontiers%20in%20Aging%20Neuroscience-blue)](https://doi.org/10.3389/fnagi.2025.1687925)
 
-## About
+> **📄 This repository contains the code for the following paper:**
+>
+> Wang, J., Chen, Y., Xie, X., Wang, P., Hu, H., Han, H., Wang, L., & Zhang, L. (2025). Diagnostic classification of mild cognitive impairment in Parkinson's disease using subject-level stratified machine-learning analysis. *Frontiers in Aging Neuroscience*, 17, 1687925.
 
-This repository includes MATLAB scripts for performing regression analysis on PD data, as well as visualization tools and results. The main components are:
+This project uses machine learning models to predict the presence of Mild Cognitive Impairment (MCI) in patients with Parkinson's Disease (PD), based on the Parkinson's Progression Markers Initiative (PPMI) dataset.
 
-- `main.m`: Main script to run the analysis
-- `regression_with_BayesOpt.m`: Performs regression with Bayesian optimization
-- `calculate_metrics.m`: Calculates performance metrics
-- `plot_*.m` files: Various plotting functions
-- `data.mat` and `data_fMRI.mat`: Data files
-- `feature_names.txt`: Contains names of features used in the analysis
-- `MNI152_T1_2mm_Brain.nii.gz`: MNI152 2mm brain template
-- `MNI152_T1_2mm_Brain_Mask.nii.gz`: Brain mask in MNI152 2mm space
-- `Schaefer2018_100Parcels_7Networks_w_SubCortAtlas_MNI152_2mm.nii.gz`: Schaefer 2018 brain atlas with 100 parcels and 7 networks in MNI152 2mm space
+The repository includes a complete pipeline for data preprocessing, statistical analysis, feature selection, model training, hyperparameter optimization, and results visualization.
 
-## Usage
+## Key Features
 
-To run the analysis:
+-   **Data Processing**: A comprehensive workflow for filtering, cleaning, feature engineering, and label generation from the raw PPMI dataset.
+-   **Feature Selection**: Utilizes LASSO Logistic Regression to identify the most relevant clinical markers associated with PD-MCI.
+-   **Model Comparison**: Trains and evaluates four mainstream machine learning models: Logistic Regression (LR), Support Vector Machine (SVM), Random Forest (RF), and XGBoost.
+-   **Automated Tuning**: Employs Optuna for Bayesian hyperparameter optimization to achieve the best performance for each model.
+-   **Interpretability**: Analyzes models using SHAP (SHapley Additive exPlanations) and permutation importance to explain the contribution of each feature to the prediction outcomes.
+-   **Rich Visualization**: Generates a suite of plots, including correlation heatmaps, ROC/PR curves, feature importance comparisons, and SHAP summary plots for clear interpretation and presentation of results.
 
-1. Ensure you have MATLAB installed
-2. Clone this repository
-3. Open MATLAB and navigate to the project directory
-4. Run `main.m`
+## Dataset
 
-## Results
+This project relies on data from the [PPMI database](https://www.ppmi-info.org/access-data-specimens/download-data). To run this code, you must obtain the following files and place them in the project's root directory:
 
-The analysis generates several result figures:
+1.  `PPMI_Curated_Data_Cut_Public_20250321.xlsx`: The original PPMI data file containing the clinical data.
+2.  `PPMI_feature_mapping.csv`: A custom feature mapping file used to convert feature names into more readable abbreviations for plotting. This file should contain two columns: `Feature Name` and `Abbreviation`.
 
-### 1. Bayesian Optimization Model
-![Bayesian Optimization Model](figures/regression_with_BayesOpt.svg)
 
-### 2. MDS-UPDRS Actual vs Predicted Total Scores Scatter Plot
-![MDS-UPDRS Scatter Plot](figures/plot_scatter.svg)
+## How to Use
 
-### 3. Weight Bar Chart
-![Weight Bar Chart](figures/plot_bar.svg)
+Please execute the Python scripts in the following order to reproduce the entire analysis pipeline.
 
-### 4. ROI Visualization
-![ROI Visualization](figures/plot_ROI.svg)
+1.  **`1_extract_data.py`**
+    -   Reads data from the source Excel file.
+    -   Filters for the Parkinson's Disease (PD) cohort.
+    -   Extracts a predefined set of clinical features.
+    -   Calculates disease duration (`duration`).
+    -   Removes samples with missing values.
+    -   Generates the MCI label (0: Normal Cognition, 1: Mild Cognitive Impairment) based on MoCA (Montreal Cognitive Assessment) scores.
 
-These figures provide visual representations of the regression analysis results and can be found in the `figures/` directory.
+2.  **`2_statistical_analysis.py`**
+    -   Performs a statistical comparison of clinical features between the Normal Cognition (PD-NC) and MCI (PD-MCI) groups.
+    -   Automatically selects the appropriate statistical test (e.g., t-test, Mann-Whitney U test, Chi-square test) based on variable type.
+    -   Applies FDR (False Discovery Rate) correction to p-values.
+    -   Generates a descriptive statistical analysis table.
 
-## Acknowledgements
+3.  **`3_correlation_heatmap.py`**
+    -   Calculates the Pearson correlation coefficients between all features.
+    -   Generates and saves a feature correlation heatmap.
 
-This project uses the `tight_subplot` function by Pekka Kumpulainen, available on [MATLAB File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/27991-tight_subplot-nh-nw-gap-marg_h-marg_w).
+4.  **`4_lasso.py`**
+    -   Splits the data into training and testing sets using `StratifiedGroupKFold` to ensure that all records from a single patient belong to only one set.
+    -   Standardizes the data.
+    -   Performs 10-fold cross-validation on the training set using LASSO Logistic Regression, optimizing the regularization parameter `lambda` based on AUC-PR (Area Under the Precision-Recall Curve).
+    -   Selects features with non-zero coefficients at the optimal `lambda`.
+    -   Saves the selected feature weights and generates diagnostic plots.
+    -   Creates new, feature-selected training and testing sets.
 
-## License
+5.  **Model Training and Evaluation**
+    -   The following scripts are standalone and each trains and evaluates one machine learning model. Each script performs hyperparameter optimization, final model training, performance evaluation, and feature importance analysis.
 
-This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for details.
+    -   **`5_LR.py`**: Logistic Regression
+    -   **`5_SVM.py`**: Support Vector Machine
+    -   **`5_RF.py`**: Random Forest
+    -   **`5_XGBoost.py`**: XGBoost
+
+6.  **Results Aggregation and Visualization**
+    -   These scripts aggregate and compare the results from all models.
+
+    -   **`6_plot_ROC_PR.py`**
+        -   Aggregates prediction results from all models on the test set.
+        -   Plots the ROC (Receiver Operating Characteristic) and PR (Precision-Recall) curves for all four models on a single figure.
+
+    -   **`6_plot_feature_importance.py`**
+        -   Summarizes and compares feature importance scores from different models and methods (e.g., model coefficients, impurity importance, SHAP, permutation importance).
+        -   Generates a 4x3 grid plot for a comprehensive overview.
+
+    -   **`6_plot_SHAP_summary.py`**
+        -   Merges the SHAP summary plots (in SVG format) generated by the four model scripts into a single 2x2 grid.
+        -   Saves the combined figure for easy cross-model comparison of global feature effects.
+
+## Supplementary Experiments
+
+The supplementary experiments aim to validate the models' robustness and generalizability from multiple perspectives:
+
+-   **Supplementary Experiment I**: Implements a more stringent site-level split validation strategy to simulate real-world model performance when deployed across different clinical centers.
+-   **Supplementary Experiment II**: Evaluates the impact of the feature selection process itself by training models on all 12 original features without prior selection.
+-   **Supplementary Experiment III**: Conducts an ablation study, assessing the performance of a more parsimonious model that uses only the top 5 predictive features.
+-   **Supplementary Experiment IV**: Provides a systematic comparison of multiple feature selection methods—including Filter, Wrapper, and Embedded approaches—to confirm the stability and reliability of the predictors identified in the main experiment.
+
+See `Supplementary_Material.pdf` for details.
+
+## Citation
+
+If you find this project useful for your research, please consider citing our paper:
+
+```bibtex
+@article{wang2025diagnostic,
+  title={Diagnostic classification of mild cognitive impairment in Parkinson's disease using subject-level stratified machine-learning analysis},
+  author={Wang, Jing and Chen, Yanfang and Xie, Xiao and Wang, Pengwei and Hu, Hang and Han, Hongfang and Wang, Lihan and Zhang, Li},
+  journal={Frontiers in Aging Neuroscience},
+  volume={17},
+  pages={1687925},
+  year={2025},
+  publisher={Frontiers Media SA},
+  doi={10.3389/fnagi.2025.1687925}
+}
+```
 
 ## Contact
 
-Jing Wang - wangjing@xynu.edu.cn
-
-Project Link: [https://github.com/yuzhounh/PD-regression-82subs](https://github.com/yuzhounh/PD-regression-82subs)
+Jing Wang (wangjing@xynu.edu.cn)
