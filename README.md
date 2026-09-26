@@ -1,13 +1,14 @@
 # PD regression with 82 subjects
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+MATLAB code and existing results for Bayesian-optimized support vector regression on Parkinson’s disease data from 82 subjects.
 
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-D4AF37?style=flat-square)](LICENSE)
 
 > 本项目对应论文：王敬, 王朋威, 谢晓, 韩红芳. "基于贝叶斯优化的支持向量回归预测帕金森病严重程度研究." 信阳师范大学学报(自然科学版) 38, no. 3 (2025): 297-303.
 
 This project contains code and data for regression analysis on Parkinson's disease (PD) using data from 82 subjects.
 
-## About
+## Repository Structure
 
 This repository includes MATLAB scripts for performing regression analysis on PD data, as well as visualization tools and results. The main components are:
 
@@ -21,7 +22,13 @@ This repository includes MATLAB scripts for performing regression analysis on PD
 - `MNI152_T1_2mm_Brain_Mask.nii.gz`: Brain mask in MNI152 2mm space
 - `Schaefer2018_100Parcels_7Networks_w_SubCortAtlas_MNI152_2mm.nii.gz`: Schaefer 2018 brain atlas with 100 parcels and 7 networks in MNI152 2mm space
 
-## Usage
+## Prerequisites and Execution
+
+The source uses Statistics and Machine Learning Toolbox (`bayesopt` and `fitrsvm`) and Image Processing Toolbox functionality (`niftiread` in `plot_ROI.m`).
+
+Running `main.m` starts optimization again and saves to the existing `bayesOptResults.mat` filename. If you only need to inspect the recorded analysis, use the bundled result file and figures below. The optimizer requests 100 objective evaluations, each using leave-one-out predictions.
+
+## Quick Start
 
 To run the analysis:
 
@@ -67,6 +74,10 @@ If you use this code in your research, please cite:
   year={2025}
 }
 ```
+
+## License
+
+See the existing [GPL-3.0 license](LICENSE).
 
 ## Contact
 Jing Wang (wangjing@xynu.edu.cn)
